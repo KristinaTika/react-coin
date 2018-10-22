@@ -13,14 +13,28 @@ class Detail extends Component {
             loading: false,
             error: null
         };
+
+        this.loadCurrency = this.loadCurrency.bind(this);
     }
 
     componentDidMount() {
         const { id } = this.props.match.params;
+        this.loadCurrency(id);
+    }
+
+    loadCurrency(id) {
         this.setState({ loading: true });
         currencies.fetchSingleCoin(id)
             .then(res => this.setState({ currency: res, loading: false }))
             .catch(err => this.setState({ error: err.message, loading: false }))
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.location.pathname !== nextProps.location.pathname) {
+            // get new currency id from url
+            const newCurrencyId = nextProps.match.params.id;
+            this.loadCurrency(newCurrencyId);
+        }
     }
 
     render() {

@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import logo from '../../photos/logo.png';
 import { Link } from 'react-router-dom';
+import Search from '../containers/Search';
 
 const Header = () => {
 
@@ -10,6 +11,7 @@ const Header = () => {
             <Link to="/home">
                 <img src={logo} alt='logo' className='Header-logo' />
             </Link>
+            <Search />
         </div>
     );
 };

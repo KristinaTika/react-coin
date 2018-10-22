@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { coinsEndpoint, singleCoinEndpoint } from '../shared/constants';
+import { coinsEndpoint, singleCoinEndpoint, searchEndpoint } from '../shared/constants';
 
 
 class Currencies {
@@ -12,6 +12,11 @@ class Currencies {
     fetchSingleCoin(id) {
         return axios.get(`${singleCoinEndpoint}${id}`)
         .then(res => res.data);
+    }
+
+    fetchSearchedCoins(input) {
+        return axios.get(`${searchEndpoint}${input}`)
+            .then(res => res.data);
     }
 }
 
