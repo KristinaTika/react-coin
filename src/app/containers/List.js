@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { currencies } from '../../services/currencies';
 import './List.css';
-import Loader from '../components/Loader';
-import ListItem from '../components/ListItem';
-import Pagination from '../components/Pagination';
+import Loader from '../partials/Loader';
+import ListItem from '../components/list/ListItem';
+import Pagination from '../components/pagination/Pagination';
 
 class List extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class List extends Component {
         const { page } = this.state;
         currencies.fetchCoins(page)
             .then(res => this.setState({ currencies: res.currencies, totalPages: res.totalPages, loading: false }))
-            .catch(err => this.setState({ error: err.errorMessage, loading: false }));
+            .catch(err => this.setState({ error: err.message, loading: false }));
     }
 
     handlePaginationClick(direction) {
